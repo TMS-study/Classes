@@ -13,13 +13,13 @@ class Car {
 }
 
 class SportCar extends Car {
-   private speed: number;
-   private price: number;
+   private speed: number = 0;
+   private price: number = 0;
 
     constructor(carName: string, engineType: string, speed: number, price: number ) {
         super(carName, engineType);
-        this.speed = speed;
-        this.price = price;
+        this.maxSpeed = speed;
+        this.priceCar = price;
     }
 
     set maxSpeed(speed: number) {
@@ -51,29 +51,102 @@ class SportCar extends Car {
     } 
 }
 
-/* class LuxuryCar extends Car {
+class LuxuryCar extends Car {
 
+    private speed: number = 0;
+    private price: number = 0;
 
-    constructor(carName: string, engineType: string) {
-        super(engineType, carName);
+    constructor(carName: string, engineType: string, speed: number, price: number ) {
+        super(carName, engineType);
+        this.maxSpeed = speed;
+        this.priceCar = price;
     }
 
-    maxSpeed(value: number) {
-        console.log();
+    set maxSpeed(speed: number) {
+        if(speed < 0){
+            this.speed = 0;
+        } else  {
+        this.speed = speed;
+    }
     }
 
-    priceCar(value: number) {
-        console.log();
+    get maxSpeed(){
+        return this.speed;
     }
-} */
+
+    set priceCar(price: number) {
+        if(price < 0){
+            this.price = 0;
+        } else  {
+            this.price = price;
+        }
+    }
+
+    get priceCar(){
+        return this.price;
+    }
+
+    showCar(){
+        return `This is ${this.carName}. It has ${this.engineType} engine and max speed equal to ${this.maxSpeed}. Approximetly cost of the car is ${this.priceCar}`;
+    } 
+} 
        
 
 
 const ferrari = new SportCar('Ferrari', 'celindr', -100, 2000);
-console.log(ferrari.maxSpeed);
-console.log(ferrari.priceCar);
-console.log(ferrari.carName);
-console.log(ferrari.engineType);
-console.log(ferrari.showCar);
+const mazda = new LuxuryCar('Mazda', 'automat', 200, 5000);
+console.log(ferrari.showCar());
+console.log(mazda.showCar());
 
 
+//Task 2 
+
+// Создайте два объекта людей. Реализуйте метод, который выводит строку `My name is <name>`. И в зависимости от контекста выполнения, этот метод должен выводить соответвующее имя
+// какой еще тут может быть контекст? кроме контекста для выполнения метода для этого объекта
+
+class Person {
+    name: string;
+
+    constructor(name:string){
+        this.name = name;
+    }
+sayName(){
+    return `My name is ${this.name}`
+}
+
+}
+
+const captainAmerica = new Person('Stiv Rodgers');
+const blackWidow = new Person('Natasha Romanoff');
+console.log(captainAmerica.sayName());
+console.log(blackWidow.sayName());
+
+//Task 3 
+
+// Создайте два объекта машин. Реализуйте метод выводящий количество дверей машины, и с какой стороны находится руль. В зависимости от контекста выполнения, этот метод должен выводить соответвующую информацию о машинах. К примеру `This car has 3 doors and this is left-hand drive car`
+
+class Car2 {
+    door: number;
+
+    constructor(door: number){
+        this.door = door;
+    }
+
+    howMachDoor(){
+        if(this.door <= 1){
+            return `This is not car`;
+        }
+        else if(this.door === 2){
+            return `This is has ${this.door} and this is left-hand drive car`;
+        }
+        else {
+            return `This is has ${this.door} and this is right-hand drive car`;
+        }
+        
+    }
+}
+
+const car1 = new Car2(4);
+const car2 = new Car2(2);
+console.log(car1.howMachDoor());
+console.log(car2.howMachDoor());
