@@ -18,8 +18,8 @@ class SportCar extends Car {
 
     constructor(carName: string, engineType: string, speed: number, price: number ) {
         super(carName, engineType);
-        this.maxSpeed = speed;
-        this.priceCar = price;
+        this.speed = speed;
+        this.price = price;
     }
 
     set maxSpeed(speed: number) {
@@ -93,7 +93,7 @@ class LuxuryCar extends Car {
        
 
 
-const ferrari = new SportCar('Ferrari', 'celindr', -100, 2000);
+const ferrari = new SportCar('Ferrari', 'celindr', 100, 2000);
 const mazda = new LuxuryCar('Mazda', 'automat', 200, 5000);
 console.log(ferrari.showCar());
 console.log(mazda.showCar());
@@ -102,28 +102,74 @@ console.log(mazda.showCar());
 //Task 2 
 
 // Создайте два объекта людей. Реализуйте метод, который выводит строку `My name is <name>`. И в зависимости от контекста выполнения, этот метод должен выводить соответвующее имя
-// какой еще тут может быть контекст? кроме контекста для выполнения метода для этого объекта
 
-class Person {
-    name: string;
 
-    constructor(name:string){
-        this.name = name;
-    }
-sayName(){
-    return `My name is ${this.name}`
+// class Person {
+//     name: string;
+
+//     constructor(name:string){
+//         this.name = name;
+//     }
+
+
+// }
+
+// const captainAmerica = new Person('Stiv Rodgers');
+// const blackWidow = new Person('Natasha Romanoff');
+
+
+// function sayName(extra: string){
+//     console.log(`My name is ${this.name}. ${extra}`)
+// }
+
+// sayName.call(captainAmerica, 'Good morning');
+// sayName.call(blackWidow, 'Good eveing');
+
+ const person1 = {
+    name: 'stiv'
 }
 
+const person2 = {
+    name: 'alla'
 }
 
-const captainAmerica = new Person('Stiv Rodgers');
-const blackWidow = new Person('Natasha Romanoff');
-console.log(captainAmerica.sayName());
-console.log(blackWidow.sayName());
+function sayName(extra: string): void{
+    console.log(`My name is ${this.name}. ${extra}`)
+}
+
+sayName.call(person1, 'Good morning!');
+sayName.call(person2, 'Good evening'); 
+
 
 //Task 3 
 
 // Создайте два объекта машин. Реализуйте метод выводящий количество дверей машины, и с какой стороны находится руль. В зависимости от контекста выполнения, этот метод должен выводить соответвующую информацию о машинах. К примеру `This car has 3 doors and this is left-hand drive car`
+
+// class Car2 {
+//     door: number;
+
+//     constructor(door: number){
+//         this.door = door;
+//     }
+
+//     howMachDoor(){
+//         if(this.door <= 1){
+//             return `This is not car`;
+//         }
+//         else if(this.door === 2){
+//             return `This is has ${this.door} and this is left-hand drive car`;
+//         }
+//         else {
+//             return `This is has ${this.door} and this is right-hand drive car`;
+//         }
+        
+//     }
+// }
+
+// const car1 = new Car2(4);
+// const car2 = new Car2(2);
+// console.log(car1.howMachDoor());
+// console.log(car2.howMachDoor());
 
 class Car2 {
     door: number;
@@ -131,22 +177,14 @@ class Car2 {
     constructor(door: number){
         this.door = door;
     }
-
-    howMachDoor(){
-        if(this.door <= 1){
-            return `This is not car`;
-        }
-        else if(this.door === 2){
-            return `This is has ${this.door} and this is left-hand drive car`;
-        }
-        else {
-            return `This is has ${this.door} and this is right-hand drive car`;
-        }
-        
-    }
 }
 
-const car1 = new Car2(4);
-const car2 = new Car2(2);
-console.log(car1.howMachDoor());
-console.log(car2.howMachDoor());
+const bmw = new Car2(4);
+const opel = new Car2(3);
+
+function howMatchDoor(extra2: string){
+console.log(`This is has ${this.door} and is ${extra2} drive car`)
+}
+
+howMatchDoor.bind(bmw, 'left-hand');
+howMatchDoor.bind(opel, 'right-hand');
