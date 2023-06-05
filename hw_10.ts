@@ -13,8 +13,8 @@ class Car {
 }
 
 class SportCar extends Car {
-   private speed: number = 0;
-   private price: number = 0;
+   private speed: number;
+   private price: number;
 
     constructor(carName: string, engineType: string, speed: number, price: number ) {
         super(carName, engineType);
@@ -53,21 +53,21 @@ class SportCar extends Car {
 
 class LuxuryCar extends Car {
 
-    private speed: number = 0;
-    private price: number = 0;
+    private speed: number;
+    private price: number;
 
     constructor(carName: string, engineType: string, speed: number, price: number ) {
         super(carName, engineType);
-        this.maxSpeed = speed;
-        this.priceCar = price;
+        this.speed = speed;
+        this.price = price;
     }
 
     set maxSpeed(speed: number) {
-        if(speed < 0){
+        if(speed <= 0){
             this.speed = 0;
         } else  {
         this.speed = speed;
-    }
+        }
     }
 
     get maxSpeed(){
@@ -75,7 +75,7 @@ class LuxuryCar extends Car {
     }
 
     set priceCar(price: number) {
-        if(price < 0){
+        if(price <= 0){
             this.price = 0;
         } else  {
             this.price = price;
@@ -87,14 +87,14 @@ class LuxuryCar extends Car {
     }
 
     showCar(){
-        return `This is ${this.carName}. It has ${this.engineType} engine and max speed equal to ${this.maxSpeed}. Approximetly cost of the car is ${this.priceCar}`;
+        return `This is ${this.carName}. It has ${this.engineType} engine and max speed equal to ${this.maxSpeed} km/h. Approximetly cost of the car is ${this.priceCar}$`;
     } 
 } 
        
 
 
-const ferrari = new SportCar('Ferrari', 'celindr', 100, 2000);
-const mazda = new LuxuryCar('Mazda', 'automat', 200, 5000);
+const ferrari = new SportCar('Ferrari', 'celindr', -100, -1);
+const mazda = new LuxuryCar('Mazda', 'automat', -200, -5000);
 console.log(ferrari.showCar());
 console.log(mazda.showCar());
 
@@ -125,7 +125,7 @@ console.log(mazda.showCar());
 // sayName.call(captainAmerica, 'Good morning');
 // sayName.call(blackWidow, 'Good eveing');
 
- const person1 = {
+const person1 = {
     name: 'stiv'
 }
 
@@ -138,7 +138,7 @@ function sayName(extra: string): void{
 }
 
 sayName.call(person1, 'Good morning!');
-sayName.call(person2, 'Good evening'); 
+sayName.call(person2, 'Good evening');  
 
 
 //Task 3 
@@ -186,5 +186,5 @@ function howMatchDoor(extra2: string){
 console.log(`This is has ${this.door} and is ${extra2} drive car`)
 }
 
-howMatchDoor.bind(bmw, 'left-hand');
-howMatchDoor.bind(opel, 'right-hand');
+howMatchDoor.apply(bmw, ['left-hand']);
+howMatchDoor.apply(opel, ['right-hand']); 
