@@ -13,13 +13,13 @@ class Car {
 }
 
 class SportCar extends Car {
-   private speed: number;
-   private price: number;
+   private speed: number = 0;
+   private price: number = 0;
 
     constructor(carName: string, engineType: string, speed: number, price: number ) {
         super(carName, engineType);
-        this.speed = speed;
-        this.price = price;
+        this.maxSpeed = speed;
+        this.priceCar = price;
     }
 
     set maxSpeed(speed: number) {
@@ -53,13 +53,13 @@ class SportCar extends Car {
 
 class LuxuryCar extends Car {
 
-    private speed: number;
-    private price: number;
+    private speed: number = 0;
+    private price: number = 0;
 
     constructor(carName: string, engineType: string, speed: number, price: number ) {
         super(carName, engineType);
-        this.speed = speed;
-        this.price = price;
+        this.maxSpeed = speed;
+        this.priceCar = price;
     }
 
     set maxSpeed(speed: number) {
